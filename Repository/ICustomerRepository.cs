@@ -8,7 +8,8 @@ public interface ICustomerRepository
 {
     Task<List<User>> GetAllCustomers();
     User GetCustomerById(int  id);
-    void DeleteCustomer(int id);
-    void UpdateCustomer(User model);
+    Task DeleteCustomer(int id);
+    Task UpdateCustomer(User model);
     Task CreateCustomer(User model);
+    Task<bool> CheckExist(int id);
 }

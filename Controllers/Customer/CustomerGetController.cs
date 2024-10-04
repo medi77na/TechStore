@@ -7,6 +7,7 @@ namespace TechStore.Controllers.Customer;
 
 [ApiController]
 [Route("api/[controller]")]
+[Tags("Customer")]
 public class CustomerGetController(ICustomerRepository customerRepository, IMapper mapper) : CustomerController(customerRepository,mapper)
 {
     [HttpGet]
