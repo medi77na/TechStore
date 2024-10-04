@@ -26,6 +26,9 @@ public class User
 
     [Column("email")]
     public string? Email { get; set; }
+
+    [Column("password")]
+    public string? Password { get; set; }
     
     [Column("id_role")]
     public int Role_id { get; set; }
