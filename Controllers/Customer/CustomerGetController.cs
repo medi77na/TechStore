@@ -15,4 +15,22 @@ public class CustomerGetController(ICustomerRepository customerRepository, IMapp
     {
         return await _customerRepository.GetAllCustomers();
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<User>> GetCustomerById(int id)
+    {
+        if (!await _customerRepository.CheckExist(id))
+        {
+            return NotFound();
+        }
+
+        var userFinded = await _customerRepository.GetCustomerById(id);
+
+        if (userFinded.Role_id != 2)
+        {
+            return NotFound();
+        }
+
+        return Ok(userFinded);
+    }
 }

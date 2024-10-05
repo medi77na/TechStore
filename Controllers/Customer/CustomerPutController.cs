@@ -25,6 +25,12 @@ public class CustomerPutController(ICustomerRepository customerService, IMapper 
 
         var customer = await _customerRepository.GetCustomerById(id);
 
+        if (customer.Role_id != 2)
+        {
+            return Unauthorized();
+
+        }
+
         _mapper.Map(model, customer);
 
         await _customerRepository.UpdateCustomer(customer);

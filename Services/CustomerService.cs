@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TechStore.Data;
 using TechStore.Models;
@@ -23,19 +21,15 @@ public class CustomerService(AppDbContext context) : GeneralServices(context), I
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteCustomer(int id)
+    public async Task DeleteCustomer(User model)
     {
-        var user = await _context.Users.FindAsync(id);
-        if (user != null)
-        {
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-        }
+        _context.Users.Remove(model);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<List<User>> GetAllCustomers()
     {
-        return await _context.Users.ToListAsync();
+        return await _context.Users.Where(u => u.Role_id == 2).ToListAsync();
     }
 
     public async Task<User> GetCustomerById(int id)
@@ -45,11 +39,6 @@ public class CustomerService(AppDbContext context) : GeneralServices(context), I
 
     public async Task UpdateCustomer(User model)
     {
-        if (model == null)
-        {
-            throw new ArgumentNullException(nameof(model), "El cliente no puede ser nulo.");
-        }
-
         try
         {
             _context.Entry(model).State = EntityState.Modified;
