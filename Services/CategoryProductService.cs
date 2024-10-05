@@ -16,30 +16,30 @@ public class CategoryProductService(AppDbContext context) : GeneralServices(cont
         return false;
     }
 
-    public async Task CreateCategory(CategoryProduct model)
+    public async Task Create(CategoryProduct model)
     {
         await _context.CategoryProducts.AddAsync(model);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteCategory(CategoryProduct model)
+    public async Task Delete(CategoryProduct model)
     {
         _context.CategoryProducts.Remove(model);
         await _context.SaveChangesAsync();
 
     }
 
-    public async Task<List<CategoryProduct>> GetAllCategories()
+    public async Task<List<CategoryProduct>> GetAll()
     {
         return await _context.CategoryProducts.ToListAsync();
     }
 
-    public async Task<CategoryProduct?> GetCategoryProductById(int id)
+    public async Task<CategoryProduct?> GetById(int id)
     {
         return await _context.CategoryProducts.FindAsync(id);
     }
 
-    public async Task UpdateCategory(CategoryProduct model)
+    public async Task Update(CategoryProduct model)
     {
         _context.Entry(model).State = EntityState.Modified;
         await _context.SaveChangesAsync();

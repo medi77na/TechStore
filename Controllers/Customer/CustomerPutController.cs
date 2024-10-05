@@ -23,7 +23,7 @@ public class CustomerPutController(ICustomerRepository customerService, IMapper 
             return NotFound();
         }
 
-        var customer = await _customerRepository.GetCustomerById(id);
+        var customer = await _customerRepository.GetById(id);
 
         if (customer.Role_id != 2)
         {
@@ -33,7 +33,7 @@ public class CustomerPutController(ICustomerRepository customerService, IMapper 
 
         _mapper.Map(model, customer);
 
-        await _customerRepository.UpdateCustomer(customer);
+        await _customerRepository.Update(customer);
 
         return NoContent();
     }

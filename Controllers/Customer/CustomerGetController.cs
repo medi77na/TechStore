@@ -13,7 +13,7 @@ public class CustomerGetController(ICustomerRepository customerRepository, IMapp
     [HttpGet]
     public async Task<List<User>> GetAllCustomers()
     {
-        return await _customerRepository.GetAllCustomers();
+        return await _customerRepository.GetAll();
     }
 
     [HttpGet("{id}")]
@@ -24,7 +24,7 @@ public class CustomerGetController(ICustomerRepository customerRepository, IMapp
             return NotFound();
         }
 
-        var userFinded = await _customerRepository.GetCustomerById(id);
+        var userFinded = await _customerRepository.GetById(id);
 
         if (userFinded.Role_id != 2)
         {

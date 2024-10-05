@@ -15,42 +15,31 @@ public class CustomerService(AppDbContext context) : GeneralServices(context), I
         return true;
     }
 
-    public async Task CreateCustomer(User model)
+    public async Task Create(User model)
     {
         await _context.Users.AddAsync(model);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteCustomer(User model)
+    public async Task Delete(User model)
     {
         _context.Users.Remove(model);
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<User>> GetAllCustomers()
+    public async Task<List<User>> GetAll()
     {
         return await _context.Users.Where(u => u.Role_id == 2).ToListAsync();
     }
 
-    public async Task<User> GetCustomerById(int id)
+    public async Task<User> GetById(int id)
     {
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task UpdateCustomer(User model)
+    public async Task Update(User model)
     {
-        try
-        {
-            _context.Entry(model).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateException dbEx)
-        {
-            throw new Exception("Error al actualizar el cliente en la base de datos.", dbEx);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Ocurrió un error inesperado al actualizar el cliente.", ex);
-        }
+        _context.Entry(model).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
     }
 }

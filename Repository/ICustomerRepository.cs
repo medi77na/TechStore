@@ -4,10 +4,10 @@ namespace TechStore.Repository;
 
 public interface ICustomerRepository
 {
-    Task<List<User>> GetAllCustomers();
-    Task<User> GetCustomerById(int  id);
-    Task DeleteCustomer(User model);
-    Task UpdateCustomer(User model);
-    Task CreateCustomer(User model);
+    Task<List<User>> GetAll();
+    Task<User> GetById(int  id);
+    Task Delete(User model);
+    Task Update(User model);
+    Task Create(User model);
     Task<bool> CheckExist(int id);
 }

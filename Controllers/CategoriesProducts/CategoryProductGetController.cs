@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Models;
 using TechStore.Repository;
@@ -13,7 +12,7 @@ public class CategoryProductGetController(ICategoryProductRepository categoryPro
     [HttpGet]
     public async Task<List<CategoryProduct>> GetAllCategories()
     {
-        return await _categoryProductRepository.GetAllCategories();
+        return await _categoryProductRepository.GetAll();
     }
 
     [HttpGet("{id}")]
@@ -23,6 +22,6 @@ public class CategoryProductGetController(ICategoryProductRepository categoryPro
         {
             return NotFound();
         }
-        return await _categoryProductRepository.GetCategoryProductById(id);
+        return await _categoryProductRepository.GetById(id);
     }
 }

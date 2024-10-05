@@ -22,7 +22,7 @@ public class CustomerPostController(ICustomerRepository customerRepository, IMap
         var user = _mapper.Map<User>(model);
         user.Role_id = 2;
 
-        await _customerRepository.CreateCustomer(user);
+        await _customerRepository.Create(user);
 
         return Ok(user);
     }

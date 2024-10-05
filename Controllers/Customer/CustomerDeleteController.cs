@@ -16,13 +16,13 @@ public class CustomerDeleteController(ICustomerRepository customerRepository) : 
             return BadRequest();
         }
 
-        var userFinded = await _customerRepository.GetCustomerById(id);
+        var userFinded = await _customerRepository.GetById(id);
 
         if (userFinded.Role_id != 2)
         {
             return NotFound();
         }
-        await _customerRepository.DeleteCustomer(userFinded);
+        await _customerRepository.Delete(userFinded);
         return NoContent();
     }
 }
