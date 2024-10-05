@@ -2,10 +2,10 @@ using TechStore.Data;
 
 namespace TechStore.Services;
 
-public class GeneralRepository
+public class GeneralServices
 {
     protected readonly AppDbContext _context;
-    protected GeneralRepository(AppDbContext context)
+    protected GeneralServices(AppDbContext context)
     {
         _context = context;
     }

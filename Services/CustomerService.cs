@@ -6,7 +6,7 @@ using TechStore.Models;
 using TechStore.Repository;
 
 namespace TechStore.Services;
-public class CustomerRepository(AppDbContext context) : GeneralRepository(context), ICustomerRepository
+public class CustomerService(AppDbContext context) : GeneralServices(context), ICustomerRepository
 {
     public async Task<bool> CheckExist(int id)
     {
@@ -38,13 +38,30 @@ public class CustomerRepository(AppDbContext context) : GeneralRepository(contex
         return await _context.Users.ToListAsync();
     }
 
-    public User GetCustomerById(int id)
+    public async Task<User> GetCustomerById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FindAsync(id);
     }
 
-    public Task UpdateCustomer(User model)
+    public async Task UpdateCustomer(User model)
     {
-        throw new NotImplementedException();
+        if (model == null)
+        {
+            throw new ArgumentNullException(nameof(model), "El cliente no puede ser nulo.");
+        }
+
+        try
+        {
+            _context.Entry(model).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException dbEx)
+        {
+            throw new Exception("Error al actualizar el cliente en la base de datos.", dbEx);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Ocurrió un error inesperado al actualizar el cliente.", ex);
+        }
     }
 }
