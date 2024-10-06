@@ -8,7 +8,6 @@ namespace TechStore.Controllers.Products;
 [Route("api/[controller]")]
 public class ProductController : GeneralController
 {
-
     protected readonly IProductRepository _productRepository;
 
     public ProductController(IProductRepository productRepository, IMapper mapper) : base(mapper)

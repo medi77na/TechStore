@@ -8,7 +8,6 @@ namespace TechStore.Controllers.Products;
 [Tags("Product")]
 public class ProductDeleteController(IProductRepository productRepository) : ProductController(productRepository)
 {
-
     [HttpDelete]
     public async Task<ActionResult> DeleteProduct(int id)
     {
@@ -20,5 +19,4 @@ public class ProductDeleteController(IProductRepository productRepository) : Pro
 
         return NoContent();
     }
-
 }

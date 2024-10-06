@@ -46,7 +46,6 @@ public class ProductService(AppDbContext context) : GeneralServices(context), IP
 
     public async Task<bool> CheckExistCategory(int id)
     {
-        
         if (await _context.CategoryProducts.FindAsync(id)  != null)
         {
             return  true;

@@ -10,7 +10,6 @@ namespace TechStore.Controllers.Products;
 [Tags("Product")]
 public class ProductGetController(IProductRepository productRepository, IMapper mapper) : ProductController(productRepository, mapper)
 {
-
     [HttpGet]
     public async Task<List<Product>> GetAllProducts()
     {
@@ -26,5 +25,4 @@ public class ProductGetController(IProductRepository productRepository, IMapper 
         }
         return await _productRepository.GetById(id);
     }
-
 }
