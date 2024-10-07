@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Repository;
 
@@ -8,6 +9,7 @@ namespace TechStore.Controllers.Employees;
 [Tags("Employee")]
 public class EmployeeDeleteController(IEmployeeRepository employeeRepository) : EmployeeController(employeeRepository)
 {
+    [Authorize]
     [HttpDelete]
     public async Task<ActionResult> DeleteCustomer(int id)
     {
