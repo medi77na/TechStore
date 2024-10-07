@@ -30,7 +30,6 @@ public class CustomerGetController(ICustomerRepository customerRepository, IMapp
         {
             return NotFound();
         }
-
         return Ok(userFinded);
     }
 }

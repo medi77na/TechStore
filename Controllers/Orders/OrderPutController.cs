@@ -10,7 +10,7 @@ namespace TechStore.Controllers.Orders;
 [Tags("Order")]
 public class OrderPutController(IOrderRepository orderRepository, IMapper mapper) : OrderController(orderRepository, mapper)
 {
-        [HttpPut]
+    [HttpPut]
     public async Task<ActionResult> UpdateCategory(int id, OrderDto model)
     {
 
